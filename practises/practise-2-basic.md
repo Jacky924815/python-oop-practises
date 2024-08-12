@@ -12,6 +12,8 @@
     - 長方形（Rectangle）
     - 正方形（Square）
 
+![](img/p2_uml.png)
+
 ## 設計要求
 ### Step 1. 建立抽象類別 `Quadrilateral`
 `Quadrilateral` 包含以下的 Instance Attributes：
@@ -28,9 +30,6 @@
 例如我們討論的四邊形的鞭長計算方式都是兩個邊長總和的 2 倍的，
 因此我們在 `Quadrilateral` 實作 `get_perimeter()` ，這樣可以減少重複的程式碼；
 當然若有需要，我們也可以在子類別中去覆寫（Override）原本的方法。
-
-請實作以下的 Instance Methods：
-- `get_perimeter() -> int|float`: 回傳四邊形的周長。
 
 若有多個類別中有類似功能的 methods（input 和 output 格式一樣），
 我們會把這些 methods 抽到一個類別再繼承下來實作，

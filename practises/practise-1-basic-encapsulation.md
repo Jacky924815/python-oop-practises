@@ -38,7 +38,7 @@
 > - Method 格式為 `<method_name>(<param_0> [: <type_0>] [,...]) [-> <return_type>]`
 
 > [!WARNING]
-> 上述的格式描述並非轉寫 Python 語法。
+> 上述的格式描述並非 Python 語法。
 
 
 ## Python 語法提示
@@ -81,7 +81,7 @@ class Product:
     ...
 
 # 定義打八折
-def discount_20_persent_off(x, n):
+def discount_20_percent_off(x, n):
     return ...
 
 # 定義買三送一
