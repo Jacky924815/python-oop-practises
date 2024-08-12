@@ -37,7 +37,8 @@
 像是所有我們討論的各種四邊形面積計算方式都不一樣，所以把 `get_area()` 提升到父類別 `Quadrilateral`；
 而由不同的子類別（Subclass）完成 methods 實作不同的過程就是**多型**（**Polymorphism**）的精神。
 
-> [!INFO] 一個類別若包含抽象方法（Abstract Methods）則該類別為**抽象類別**（**Abstract Class**），
+> [!NOTE] 
+> 一個類別若包含抽象方法（Abstract Methods）則該類別為**抽象類別**（**Abstract Class**），
 > 抽象類別中的抽象方法必須在子類別中實作
 > 
 > 在 Python 中會利用 `abc.ABCMeta` 定義抽象類別並用裝飾子（decorator）去定義抽象方法。
@@ -60,7 +61,8 @@
 
 繼承的機制中，只有不屬於私有的屬性與方法（在 Python 只有分公開和私有）才能被子類別直接存取，
 因此我們必須要有 getter 和 setter 才能對私有的屬性做存取。
-> [!INFO] 在 Python 中可利用裝飾子 `property` 讓存取的呼叫變得更簡潔，
+> [!NOTE]
+> 在 Python 中可利用裝飾子 `property` 讓存取的呼叫變得更簡潔，
 > 範例程式碼如下：
 > ``` python
 > class A:
@@ -71,7 +73,7 @@
 >         return self.__x
 >     @x.setter
 >     def x(self, n):
->          if x >= 0: self.__x = n
+>          if n >= 0: self.__x = n
 > 
 > # 存取的範例
 > a = A()
@@ -79,7 +81,8 @@
 > a.x = 3
 > ```
 
-> [!CAUTION] 在 Python 中，雖然你可以利用 `x._MyClass__a1` 去直接存取 `x.__a1`，
+> [!CAUTION]
+> 在 Python 中，雖然你可以利用 `x._MyClass__a1` 去直接存取 `x.__a1`，
 > 然而這樣會違背「封裝」的原則，比較好的方式還是寫 `property` 控制存取的方式。
 
 請利用 `property` 完成 `__edge_1`、`__edge_2`、`__angle` 的 **Getter**。
@@ -87,7 +90,8 @@
 
 ### Step 2. 完成類別 `Parallelogram`
 將 `Parallelogram` 繼承 `Quadrulateral`。
-> [!INFO] Python 中繼承的語法如下。
+> [!NOTE]
+> Python 中繼承的語法如下。
 > ```python
 > class Superclass:
 >     ...
@@ -100,17 +104,20 @@
 - `get_area() -> intfloat`: 平行四邊形的面積。
 - `get_diagonals() -> tuple`: 平行四邊形的兩條對角線長度。
 
-> [!TIP] 另平行四邊形的兩邊為 a, b、夾角為 $\theta$，對角線 $d_1, d_2$，則：
+> [!TIP]
+> 令平行四邊形的兩邊為 a, b、夾角為 $\theta$，對角線 $d_1, d_2$，則：
 > - 面積 = $ab\sin{\theta}$
 > - 依照三角形餘弦定理，$d_1 = \sqrt{a^2 + b^2 - 2ab\cos\theta}$，
->   $d_2 = \sqrt{a^2 + b^2 + 2ab\theta}$
+>   $d_2 = \sqrt{a^2 + b^2 + 2ab\cos\theta}$
 
-> [!INFO] 你需要利用在 `Quadrilateral` 定義的 `property` 取得平行四邊形的資訊。
+> [!IMPORTANT]
+> 你需要利用在 `Quadrilateral` 定義的 `property` 取得邊長和角度的資訊。
 
 
 ### Step 3. 完成 `Rectangle`
 將 Rectangle 的 Constructor 覆寫成輸入為 `(edge_1, edge_2)`，利用 `super().__init__(...)` 將父類別的 `__edge_1, edge_2, __angle` 初始成 `edge_1, edge_2, pi/2`。
-> [!INFO] 具體來講，會像是這個樣子，`super()` 表示調用父類別的 method，
+> [!NOTE]
+> 具體來講，會像是這個樣子，`super()` 表示調用父類別的 method，
 > 在這個例子中就是調用 Quadrilateral 的 Constructor。
 > ```python
 > class Rectangle(Quadrilateral):
