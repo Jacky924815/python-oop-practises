@@ -107,7 +107,8 @@
 > [!TIP]
 > 令平行四邊形的兩邊為 a, b、夾角為 $\theta$，對角線 $d_1, d_2$，則：
 > - 面積 = $ab\sin{\theta}$
-> - 依照三角形餘弦定理，$d_1 = \sqrt{a^2 + b^2 - 2ab\cos\theta}$，
+> - 依照三角形餘弦定理，
+>   $d_1 = \sqrt{a^2 + b^2 - 2ab\cos\theta}$ ，
 >   $d_2 = \sqrt{a^2 + b^2 + 2ab\cos\theta}$
 
 > [!IMPORTANT]
@@ -131,7 +132,8 @@
 
 
 ### Step 4. 完成 `Square`
-將 Rectangle 的 Constructor 覆寫成輸入為 `(edge)`，利用 `super().__init__(...)` 將父類別的 `__edge_1, edge_2, __angle` 初始成 `edge, edge, pi/2`。
+將 Square 的 Constructor 覆寫成輸入為 `(edge)`，利用 `super().__init__(...)`
+將父類別的 `__edge_1, edge_2, __angle` 初始成 `edge, edge, pi/2`。
 
 將父類別的抽象方法實做出來：
 - `get_area() -> intfloat`: 長方形的面積。
