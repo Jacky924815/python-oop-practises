@@ -26,7 +26,7 @@ p3
 
 ## 程式設計
 ### UML 類別圖
-
+![](img/p3_uml.png)
 
 ### Step 1. 完成 `student.py`
 #### 1.1 完成 `class Score`
