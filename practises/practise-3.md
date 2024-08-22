@@ -9,27 +9,23 @@
 - 公布錄取名單。
 
 在這個練習中，假設入學分數只會依據學測分數進行加權決定錄取。
+
 ## 檔案結構
-本次的練習分成三個檔案：
+本次的練習分成 2 個檔案：
 ```
 p3
 ├-- student.py
-├-- college.py
-├-- main.py
-└-- data
-    ├-- college.json
-    └-- student.json
+└-- department.py
 ```
-- `student.py`: 定義 `class Student` 與 `class Score`。
-- `college.py`: 定義 `class College` 與其子類別。
-- `main.py` ： 用來模擬主要流程。
 
-## 程式設計
+`student.py` 包含 `class Score`, `class Student`；
+`department.py` 包含 `class Department`。
+
 ### UML 類別圖
 ![](img/p3_uml.png)
 
-### Step 1. 完成 `student.py`
-#### 1.1 完成 `class Score`
+## Step 1. 完成 `student.py`
+### 1.1 完成 `class Score`
 定義 `class Score`，該類別具有以下的 **Instance Attributes**:
 - `__chinese: int`: 國文的分數。
 - `__english: int`: 英文的分數。
@@ -100,7 +96,7 @@ class Score:
     ...
 ```
 
-#### 1.2 完成 `class Student`
+### 1.2 完成 `class Student`
 `class Student` 有以下的 **Instance Attributes**
 - `__id: str`: 准考證號碼。
 - `__name: str`: 考生性名。
@@ -113,12 +109,11 @@ class Score:
 > 在英文的語感為 "class `Student` owns class `Score`"。
 
 `Student` 具有下列的 **Class Methods**:
-- `from_score_tuple(id: str, name: str, tuple_: tuple) -> Student`: 依照 `tuple_` 製造 `Student` 物件。
+- `from_score_tuple(id: str, name: str, tuple_: tuple) -> Student`: 
+  依照 `tuple_` 製造 `Student` 物件。
   `tuple_` 的元素第 0~4 項依序代表 `score.__chinese`, `score.__english`, `score.__math`,
   `score.__math`, `score.__society`, `score.__nature`；
   若有第 5 項則該項代表 `score.__note`。
-
-- `from_score(id: str, name: str, score: Score) -> Student`: 利用 `Score` 實體建立 `Student` 實體。
 
 `class Student` **複寫** (**Override**) 以下的實體方法：
 - `__str__() -> str`: 以字串回傳考生資訊。字串的格式如下：
@@ -148,7 +143,7 @@ Society: 8
 > ```python
 > class MyClass:
 >     def __init__(self, a, b)
->         self.__a, self,__b = a, b
+>         self.__a, self.__b = a, b
 > 
 >     def __str__(self):
 >         return '__a: %d, __b: %d'%(self.__a, self.__b)
@@ -158,16 +153,16 @@ Society: 8
 > ```
 
 參考下表，利用 `@property` 定義出相對應的 getter/setter。
-|property   |getter               |setter|
-|-----------|---------------------|------|
-|`id`       |`__id`               | X    |
-|`name`     |`__name`             | X    |
-|`score`    |the copy of `__score`| X    |
-|`chinese`  |`__score.chinese`    | X    |
-|`english`  |`__score.english`    | X    |
-|`math`     |`__score.math`       | X    |
-|`society`  |`__score.society`    | X    |
-|`nature`   |`__score.nature`     | X    |
+|property   |attribute            |getter|setter|
+|-----------|---------------------|------|------|
+|`id`       |`__id`               | O    | X    |
+|`name`     |`__name`             | O    | X    |
+|`score`    |the copy of `__score`| O    | X    |
+|`chinese`  |`__score.chinese`    | O    | X    |
+|`english`  |`__score.english`    | O    | X    |
+|`math`     |`__score.math`       | O    | X    |
+|`society`  |`__score.society`    | O    | X    |
+|`nature`   |`__score.nature`     | O    | X    |
 
 > [!CAUTION]
 > 被複合的對象定義為私有，若在 getter 直接回傳
@@ -206,7 +201,7 @@ Society: 8
 >     def a(self): return A.copy(self.__a)
 > ```
 
-#### 1.3 在 `student.py` 撰寫 `if __name__ == '__main__`:
+### 1.3 在 `student.py` 撰寫 `if __name__ == '__main__`:
 在 `if __name__ == '__main__` 中，請依流程執行：
 1. 利用 `Score.__init__()` 建立 `score_1`。
 2. 利用 `Score.copy()` 將 `score_1` 生拷貝到 `score_1_copy`。
@@ -215,5 +210,54 @@ Society: 8
    ```
    <__main__.Score object at 0x000001F58E733F50>
    ```
-4. 利用 `Score.from_tuple()` 建立 `score_2`
-5. 利用 `Student.__init__()`
+4. 印出 `score_1 is not score_1_copy` 並觀察其結果。
+5. 利用 `Student.__init__()` 建立 `student_1`，其分數為 `score_1`。
+   預期輸出為 `True`。
+6. 印出 `student_1`。
+7. 建立一個包含 5 個數字的 tuple，然後利用 `Score_2.from_tuple()` 建立 `score_2`。
+8. 建立 `student_2` 其分數為 `score_2`，接著印出 `student_2`。
+9. 建立一個包含 5 個數字的 tuple，然後利用 `Student.from_score_tuple()` 建立 `student_3`
+  接著印出 `student_3`。
+
+## Step 2. 完成 `Department.py`
+### Step 2.1 完成 `class Department`
+建立 `class Department`，該類別有以下 **Instance Attribute**
+- `__students: list`: 申請該學系的學生名單。
+- `__quota: int`: 預計錄取的人數。
+- `__scoring: function`: 評分方式。
+
+`class Department.__init__` 的引數為 `(quota, scoring=sum)`，並作以下的初始化：
+- `__students: list` 為空 list。
+- `__quota` 設定為 `quota`
+- `__scoring` 設定為 `scoring`
+
+> [!NOTE]
+> 你需要把 `student.py` 的程式碼引用到這份檔案裡。
+> 下面的範例中 `b.py` 引用了 `a.py` 中的 `MyClass`，
+> 這兩個檔案在同一個資料夾，且我們預計會從 `b.py` 執行
+> （雖然這不是正式的專案結構）。
+> ```python
+> # src/a.py
+> class MyClass:
+>     ...
+> ```
+> ```python
+> # src/b.py
+> from a import MyClass
+> ```
+
+
+`class Department` 有以下的 **Inatance Methods**:
+- `add_student(student: Student)`: 新增申請該科系的學生
+- `result() -> list`: 產生錄取准考證號碼名單。
+
+### Step 2.2 撰寫 2 種計分方式
+寫 2 個函數 `scoring_1(student:Student)->int` 和 `scoring_2(student:Student)->int`。
+前者計算方式為「所有科目加總」，後者加權方式為國文 1、英文 2、數學 4、自然 2。
+
+### Step 2.3 在 `department.py` 撰寫 `if __name__ == '__main__'`
+1. 建立 `department_1`，錄取人數為 6、評分方式為 `scoring_1`。
+2. 建立 `department_1`，錄取人數為 5、評分方式為 `scoring_5`。
+3. 生成出 10 考生資訊，你可以用任何方法建立。
+4. 所有的學生都申請 `department_1` 和 `department_2`。
+5. 印出 `department_1` 和 `department_2` 的名單。
