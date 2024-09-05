@@ -23,9 +23,10 @@ $A, B$ 必須有相同的行數與列數才能加／減。
 #### 加法
 - $C_{m \times n} = A_{m \times n} + B_{m \times n}$
 - $\forall (i,j), c_{i,j} = a_{i,j} + b_{i,j}$
-> 例：
->
-> $\begin{bmatrix}
+
+ 例：
+
+$$\begin{bmatrix}
     1 & 2\\
     3 & 4\\
     5 & 6\\
@@ -39,64 +40,64 @@ $A, B$ 必須有相同的行數與列數才能加／減。
     2 & 3\\
     5 & 6\\
     4 & 5\\
-\end{bmatrix}$
+\end{bmatrix}$$
 
 #### 減法
 - $C_{m \times n} = A_{m \times n} - B_{m \times n}$
 - $\forall (i,j), c_{i,j} = a_{i,j} - b_{i,j}$
 
-> 例：
->
-> $\begin{bmatrix}
->    1 & 2\\
->    3 & 4\\
->    5 & 6\\
-> \end{bmatrix} -
-> \begin{bmatrix}
->     1 & 1\\
->     2 & 2\\
->     -1 & -1\\
-> \end{bmatrix} = 
-> \begin{bmatrix}
->     0 & 1\\
->     1 & 2\\
->     7 & 8\\
-> \end{bmatrix}$
+例：
+
+$$\begin{bmatrix}
+    1 & 2\\
+    3 & 4\\
+    5 & 6\\
+\end{bmatrix} -
+\begin{bmatrix}
+     1 & 1\\
+     2 & 2\\
+     -1 & -1\\
+\end{bmatrix} = 
+\begin{bmatrix}
+     0 & 1\\
+     1 & 2\\
+     7 & 8\\
+\end{bmatrix}$$
 
 ### 3. 純量乘法
 令 $c$ 為常數，則
 - $B_{m \times n} = cA_{m \times n}$
 - $\forall (i,j), b_{i,j} = ca_{i,j}$
 
-> 例：
->
-> $3 \times \begin{bmatrix}
->     1\\
->     2\\
->     3\\
-> \end{bmatrix} = \begin{bmatrix}
->     3\\
->     6\\
->     9\\
-> \end{bmatrix}$
+例：
+
+$$3 \times \begin{bmatrix}
+     1\\
+     2\\
+     3\\
+\end{bmatrix} = \begin{bmatrix}
+     3\\
+     6\\
+     9\\
+\end{bmatrix}$$
 
 ### 4. 矩陣乘法
 $AB$ 能夠運算表示 $A$ 列數與 $B$ 的行數相同。
 - $C_{m \times n} = A_{m \times p}B_{p \times n}$
 - $c_{i,j} = \sum_{k=0}^{p-1} a_{i,k}b_{k,j} $
-> 例：
->
-> $\begin{bmatrix}
->     1 & 0 & 2\\
->     -1 & 3 & 1
-> \end{bmatrix} \begin{bmatrix}
->     3 & 1\\
->     2 & 1\\
->     1 & 0
-> \end{bmatrix} =\begin{bmatrix}
->     5 & 1\\
->     4 & 2\\
-> \end{bmatrix}$ 
+例：
+
+$$\begin{bmatrix}
+     1 & 0 & 2\\
+     -1 & 3 & 1
+\end{bmatrix} \begin{bmatrix}
+     3 & 1\\
+     2 & 1\\
+     1 & 0
+\end{bmatrix} =\begin{bmatrix}
+     5 & 1\\
+     4 & 2\\
+\end{bmatrix}$$ 
 
 
 ### 5. 轉置矩陣
@@ -108,25 +109,26 @@ $A_{n \times n}$ 的行列式可用以下算式計算：
 - $det(A) = |A| = \sum_{i=0}^{n-1} (-1)^ia_{0, i}C_{0,i}$
 
 其中 $C_{0, i}$ 定義為扣除第 0 行、第 $i$ 列的行列式。
-> 假設 $A = \begin{bmatrix} 1&2&3 \\ 4&5&6 \\ 7&8&9\end{bmatrix}$，則
-> $C_{0,0} = \begin{vmatrix} 5&6 \\ 6&9 \end{vmatrix}$, 
-> $C_{0,1} = \begin{vmatrix} 4&6 \\ 7&9 \end{vmatrix}$, 
-> $C_{0,2} = \begin{vmatrix} 4&5 \\ 7&8 \end{vmatrix}$。
+
+假設 $A = \begin{bmatrix} 1&2&3 \\ 4&5&6 \\ 7&8&9\end{bmatrix}$，則
+$C_{0,0} = \begin{vmatrix} 5&6 \\ 6&9 \end{vmatrix}$, 
+$C_{0,1} = \begin{vmatrix} 4&6 \\ 7&9 \end{vmatrix}$, 
+$C_{0,2} = \begin{vmatrix} 4&5 \\ 7&8 \end{vmatrix}$。
 
 若 $A = \begin{bmatrix} a&b \\ c&d\end{bmatrix}$，則 $det(A) = ad - bc$；若 $A = \begin{bmatrix} a \end{bmatrix}$，則 $det(A) = a$。
 
-> 例：
->
-> $det(\begin{bmatrix} 1&2&3 \\ 4&5&6 \\ -3&1&2\end{bmatrix})$
-> $ = \begin{vmatrix} 1&2&3 \\ 4&5&6 \\ -3&1&2\end{vmatrix}$
->
-> $= (-1)^0 \cdot 1 \cdot \begin{vmatrix} 5&6 \\ 1&2\end{vmatrix} + $
-> $= (-1)^1 \cdot 2 \cdot \begin{vmatrix} 4&6 \\ -3&2\end{vmatrix} + $
-> $= (-1)^2 \cdot 3 \cdot \begin{vmatrix} 4&5 \\ -3&1\end{vmatrix}$
->
-> $= 4 - 52 + 57$
->
-> $= 9$
+例：
+
+$det(\begin{bmatrix} 1&2&3 \\ 4&5&6 \\ -3&1&2\end{bmatrix})$
+$ = \begin{vmatrix} 1&2&3 \\ 4&5&6 \\ -3&1&2\end{vmatrix}$
+
+$= (-1)^0 \cdot 1 \cdot \begin{vmatrix} 5&6 \\ 1&2\end{vmatrix} + $
+$= (-1)^1 \cdot 2 \cdot \begin{vmatrix} 4&6 \\ -3&2\end{vmatrix} + $
+$= (-1)^2 \cdot 3 \cdot \begin{vmatrix} 4&5 \\ -3&1\end{vmatrix}$
+
+$= 4 - 52 + 57$
+
+$= 9$
 
 
 ## 程式要求
@@ -162,3 +164,36 @@ m2 = (
 > `message` 通常用來提示外部發生意外的原因。
 >
 > 若發生意外，通常要去處理，但在本次只會練習拋出例外。
+
+接著，請實作以下**實體方法**：
+
+### `add(self, that) -> Matrix`
+與另外一個矩陣相加並回傳計算結果。
+#### Parameter
+`that: Matrix`: 要加的矩陣。
+#### Returns
+與 `that` 相加的結果。
+#### Raises
+- 若 `that` 非 `Matrix`，拋出 `TypeError`。
+- 若無法相加，拋出 `ArithmeticError`。
+
+### `sub(self, that) -> Matrix`
+與另外一個矩陣相減並回傳計算結果。
+#### Parameter
+`that: Matrix`: 要減的矩陣。
+#### Returns
+與 `that` 相減的結果。
+#### Raises
+- 若 `that` 非 `Matrix`，拋出 `TypeError`。
+- 若無法相減，拋出 `ArithmeticError`。
+
+
+### `mul(self, that) -> Matrix`
+與純量（數字）或另外一個矩陣相乘並回傳計算結果。
+#### Parameter
+`that: int|float|Matrix`: 要乘的數字或矩陣。
+#### Returns
+與 `that` 相乘的結果。
+#### Raises
+- 若 `that` 非 `Matrix`，拋出 `TypeError`。
+- 若無法相乘，拋出 `ArithmeticError`。
